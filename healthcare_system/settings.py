@@ -14,6 +14,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
 from dotenv import load_dotenv
 
 # Load environment variables from .env file
@@ -123,10 +124,10 @@ WSGI_APPLICATION = "healthcare_system.wsgi.application"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(
+    'default':{ dj_database_url.config(
         default=os.environ.get('DATABASE_URL'),
         conn_max_age=600,
-        ssl_require=True 
+        ssl_require=True )
     #'default': {
      #   'ENGINE': 'django.db.backends.postgresql',
       #  'NAME': os.getenv('DB_NAME'),

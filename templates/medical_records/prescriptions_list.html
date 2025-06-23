@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Prescriptions</h2>
+<table class="table">
+    <tr>
+        <th>Médicaments</th>
+        <th>Examens complémentaires</th>
+        <th>Conseils médicaux</th>
+        <th>Médecin</th>
+        <th>Date de prescription</th>
+    </tr>
+    {% for prescription in records %}
+    <tr>
+        <td>{{ prescription.medications }}</td>
+        <td>{{ prescription.complementary_exams }}</td>
+        <td>{{ prescription.medical_advice }}</td>
+        <td>{% if prescription.doctor %}{{ prescription.doctor.get_full_name }}{% endif %}</td>
+        <td>{{ prescription.prescription_date }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %} 

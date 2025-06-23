@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Résultats de laboratoire</h2>
+<table class="table">
+    <tr>
+        <th>Type d'analyse</th>
+        <th>Valeurs mesurées</th>
+        <th>Valeurs de référence</th>
+        <th>Conclusion du biologiste</th>
+        <th>Date et heure du prélèvement</th>
+        <th>Date du rendu</th>
+        <th>Nom du labo</th>
+        <th>Technicien/Biologiste</th>
+    </tr>
+    {% for result in records %}
+    <tr>
+        <td>{{ result.analysis_type }}</td>
+        <td>{{ result.measured_value }}</td>
+        <td>{{ result.reference_value }}</td>
+        <td>{{ result.conclusion }}</td>
+        <td>{{ result.sample_collection_date }}</td>
+        <td>{{ result.result_date }}</td>
+        <td>{{ result.laboratory_name }}</td>
+        <td>{% if result.technician_or_biologist %}{{ result.technician_or_biologist.get_full_name }}{% endif %}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %} 

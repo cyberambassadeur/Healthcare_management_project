@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Mon Profil Patient</h2>
+<ul>
+    <li>Nom: {{ patient.last_name }}</li>
+    <li>Prénom: {{ patient.first_name }}</li>
+    <li>Date de naissance: {{ patient.date_of_birth }}</li>
+    <li>Sexe: {{ patient.get_gender_display }}</li>
+    <li>Adresse: {{ patient.address }}</li>
+    <li>Téléphone: {{ patient.phone_number }}</li>
+    <li>Email: {{ patient.email }}</li>
+    <li>Groupe sanguin: {{ patient.blood_group }}</li>
+    <li>Antécédents médicaux: {{ patient.medical_history }}</li>
+    <li>Numéro d'identification: {{ patient.patient_id }}</li>
+    <li>Numéro de sécurité sociale: {{ patient.social_security_number }}</li>
+    <li>Personne à contacter en cas d'urgence: {{ patient.emergency_contact_name }} ({{ patient.emergency_contact_relationship }}) - {{ patient.emergency_contact_phone }}</li>
+</ul>
+{% endblock %} 

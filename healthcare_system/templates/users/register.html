@@ -1,0 +1,72 @@
+{% extends 'base.html' %} {# Extends your base template #}
+{% load static %}
+
+{% block title %}Register Account{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8"> {# Increased column size for more fields #}
+        <div class="card shadow-sm mt-5">
+            <div class="card-header bg-success text-white text-center">
+                <h3 class="mb-0">Create Your Account</h3>
+            </div>
+            <div class="card-body p-4">
+                <form method="post">
+                    {% csrf_token %} {# Django's security token for forms #}
+
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger" role="alert">
+                            {% for error in form.non_field_errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    {% for field in form %}
+                        <div class="mb-3">
+                            <label for="{{ field.id_for_label }}" class="form-label">
+                                {{ field.label }}{% if field.field.required %} <span class="text-danger">*</span>{% endif %}
+                            </label>
+                            {# Render the field with Bootstrap classes #}
+                            {{ field|add_class:"form-control" }}
+                            {% if field.help_text %}
+                                <div class="form-text">{{ field.help_text }}</div>
+                            {% endif %}
+                            {% if field.errors %}
+                                <div class="text-danger small mt-1">
+                                    {% for error in field.errors %}{{ error }}{% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+
+                    <div class="d-grid gap-2 mb-3">
+                        <button type="submit" class="btn btn-success btn-lg">Register</button>
+                    </div>
+
+                    <p class="text-center mt-3">
+                        Already have an account? <a href="{% url 'users:login' %}">Login here</a>.
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% comment %}
+    You need to create a custom template filter to use 'add_class'.
+    In your 'core' app, create a 'templatetags' directory and a file inside it, e.g., 'core/templatetags/custom_filters.py'.
+    Add the following content to 'core/templatetags/custom_filters.py':
+
+    from django import template
+
+    register = template.Library()
+
+    @register.filter(name='add_class')
+    def add_class(value, arg):
+        return value.as_widget(attrs={'class': arg})
+
+    Then, in your templates, you can load it: {% load custom_filters %}
+{% endcomment %}
+
+{% endblock %}

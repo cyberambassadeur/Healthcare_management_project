@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Home | Healthcare System{% endblock %}
+
+{% block content %}
+<div class="text-center py-5">
+    <h1 class="display-4 mb-3">Welcome to Healthcare System</h1>
+    <p class="lead mb-4">
+        Your modern and secure platform for medical management.<br>
+        Book appointments, manage patients and doctors, and access medical records online.
+    </p>
+    <a href="{% url 'users:login' %}" class="btn btn-primary btn-lg">Get Started</a>
+</div>
+<div class="row mt-5">
+    <div class="col-md-4">
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Easy Appointments</h5>
+                <p class="card-text">Quick and intuitive appointment booking for patients and doctors.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Secure Management</h5>
+                <p class="card-text">Safely manage patient and doctor data with role-based access.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Medical Records</h5>
+                <p class="card-text">Access and update medical records from anywhere, anytime.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
